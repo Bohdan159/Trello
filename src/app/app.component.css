@@ -1,0 +1,23 @@
+.app{
+
+}
+
+.toPrevPage {
+  position: relative;
+  margin-top: 20px;
+  left: 50%;
+  outline: none;
+  width: 65px;
+  height: 65px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+  border-radius: 50%;
+}
+
+.toPrevPage:hover {
+  width: 67px;
+  height: 67px;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.33);
+  filter: drop-shadow(3px 3px 3px #333);
+}
