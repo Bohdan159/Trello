@@ -1,11 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-boards',
   templateUrl: './boards.component.html',
   styleUrls: ['./boards.component.css']
 })
-export class BoardsComponent {
+export class BoardsComponent implements OnInit{
+  private boards: string[] = [];
+
+  constructor(){}
+
+  ngOnInit(){
+
+  }
 
 
 }
