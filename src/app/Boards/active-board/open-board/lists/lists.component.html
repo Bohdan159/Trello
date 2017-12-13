@@ -1,0 +1,11 @@
+<div class="wrap" *ngFor="let list of lists; let i=index">
+  <div class="head-of-list">
+    <input type="button" value="X" class="delete-list" (click)="deleteList(i)">
+    <h2>{{list.name}}</h2>
+  </div>
+  <div class="body-of-list">
+    <input type="text" class="name-item" (keyup)="press($event, i)" [(ngModel)]="nameItem">
+    <app-list-of-item></app-list-of-item>
+  </div>
+
+</div>

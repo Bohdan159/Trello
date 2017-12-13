@@ -1,26 +1,8 @@
-<div class="wrapper-for-active-board">
-  <button *ngIf="!createMode" (click)="createBoard()" class="btn-begin-board active-board">
-    Create a new board...
-  </button>
-  <div *ngIf="createMode" class="create-board active-board">
-    <form [formGroup]="formForBoard" class="form-active-board" (ngSubmit)="submit($event)">
-      <div class="header-of-board">
-        <label>Creating a board</label>
-        <input type="button" value="x" (click)="close()" class="close">
-      </div>
-      <div class="body-of-board">
-        <label class="header-statement">What shall we call the board?</label>
-        <div>
-          <input type="text" class="name-board" (keyup)="enterPress($event)" formControlName="name" [(ngModel)]="name">
-          <label *ngIf="formForBoard.controls['name'].invalid && formForBoard.controls['name'].touched && formForBoard.controls['name'].dirty"  class="error-statement">
-            Oops! Looks like you forgot the name!
-          </label>
-        </div>
-        <div class="board-btn">
-          <input type="button" value="cancel" class="btn-cancel" (click)="cancelBoard()">
-          <input type="button" value="create" class="btn-create" (click)="createNewBoard()">
-        </div>
-      </div>
-    </form>
-  </div>
+<div class="wrap" *ngFor="let board of boards; let i=index">
+  <input type="button" value="X" class="delete-board" (click)="deleteBoard(i)">
+  <a (click)="goTo(i)">
+    <div class="wrap-new-board">
+      <h2>{{board.name}}</h2>
+    </div>
+  </a>
 </div>

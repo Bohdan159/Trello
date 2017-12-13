@@ -1,61 +1,54 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CreateNewBoard } from '../../Services/create-new-board';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CreateNewBoard } from '../../Services/create-new-board.service';
+import { NameBoard } from '../../Services/data-for-open-board.service';
+import { Router } from "@angular/router";
 
+export class Board {
+  id: number;
+  name: string;
+
+  constructor(id: number, name: string) {
+    this.id = id;
+    this.name = name;
+  }
+}
 
 @Component({
   selector: 'app-active-board',
   templateUrl: './active-board.component.html',
   styleUrls: ['./active-board.component.css']
 })
-export class ActiveBoardComponent {
-  private name: string = '';
-  private id: number = 0;
-  private createMode: boolean = false;
+export class ActiveBoardComponent implements OnInit, OnDestroy {
+  private boards: Board[] = [] || this.boards;
 
-
-  formForBoard: FormGroup;
-
-  constructor(private dataForBord: CreateNewBoard) {
-    this.formForBoard = new FormGroup({
-      "name": new FormControl("", Validators.required)
-    });
+  constructor(private dataForBord: CreateNewBoard, private nameBoard: NameBoard, private router: Router) {
   }
 
-  // submit($event), createNewBoard() -- пока одно и тоже
-  public submit($event) {
+  ngOnInit() {
+    this.dataForBord.currentBoard
+      .subscribe(({id, boardName}) => {
+        if (boardName != '') {
+          this.addBoard(id, boardName);
+        }
+      });
+    // .unsubscribe;
   }
 
-  enterPress($event) {
-    const validName: boolean = this.name.trim() !== '' ? true : false;
-    if ($event.keyCode == '13' && validName) {
-      console.log(this.name);
-      // this.addBoard(this.id, this.name);
-      this.dataForBord.changeBoard(this.id, this.name);
-      this.close();
-    }
-
+  ngOnDestroy() {
+    this.dataForBord.currentBoard.subscribe(() => {
+    }).unsubscribe();
   }
 
-  public createBoard() {
-    this.createMode = true;
+  public addBoard(id: number, name: string) {
+    this.boards.push(new Board(id, name));
   }
 
-  //  close(), cancelBoard() -- пока одно и тоже + по окончанию добавления должна срабатывать одна из этих функций
-  public close() {
-    // this.formForBoard.controls['name'] = false;
-    this.name = '';
-    this.createMode = false;
+  public deleteBoard(id) {
+    this.boards.splice(id, 1);
   }
 
-  public cancelBoard() {
-    this.name = '';
-    this.createMode = false;
+  private goTo(id) {
+    this.nameBoard.getName(this.boards[id].name);
+    this.router.navigate([id+1]);
   }
-
-  public createNewBoard($event) {
-    this.enterPress($event);
-  }
-
-
 }

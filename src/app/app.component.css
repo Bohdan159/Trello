@@ -1,11 +1,14 @@
-.app{
+.app {
 
 }
 
+.wrap{
+  display: flex;
+  justify-content:center;
+}
+
 .toPrevPage {
-  position: relative;
-  margin-top: 20px;
-  left: 50%;
+  margin: 20px 0;
   outline: none;
   width: 65px;
   height: 65px;

@@ -5,12 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './boards.component.html',
   styleUrls: ['./boards.component.css']
 })
-export class BoardsComponent implements OnInit{
-  private boards: string[] = [];
+export class BoardsComponent implements OnInit {
 
-  constructor(){}
+  constructor() {}
 
-  ngOnInit(){
+  ngOnInit() {
 
   }
 

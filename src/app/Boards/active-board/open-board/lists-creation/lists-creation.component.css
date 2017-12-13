@@ -1,36 +1,53 @@
 .wrap{
-  margin-bottom: 20px;
+  display: block;
 }
 
-a{
-  text-decoration: none;
-}
-
-.wrap-new-board{
-  width: 345px;
-  height: 120px;
-  background-color: white;
-  color: #333;
+.wrap-body{
   display: flex;
+  padding: 45px 86px 15px;
+}
+
+.btn-add-board {
+  background-color: #0a2c74;
+  height: 120px;
+  display: flex;
+  font-size: 20px;
+  transition: all 200ms ease-in-out;
+  color: rgb(255, 255, 255);
+  margin: 20px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 5.5px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   cursor: pointer;
-  transition: 200ms ease-in-out;
   font-weight: 900;
-  text-shadow: 0px 0px 3px white;
-  word-break: break-all;
+  text-shadow: 0px 0px 3px #000;
+  padding: 10px 30px;
+  outline: none;
 }
 
-.wrap-new-board:hover{
+.btn-add-board:hover {
   filter: drop-shadow(3px 3px 3px #333);
-  width: 360px;
+  width: 215px;
   height: 135px;
 }
 
-.delete-board {
+.add-list{
+  display: block;
+  margin-top: 0em;
+}
+
+.name-list{
+  padding: 11px 30px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 2.5px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 3px 3px rgba(0,0,0,0.16), 0 3px 3px rgba(0,0,0,0.23);
+  width: 200px;
+  outline: none;
+}
+
+.delete-list {
   position: absolute;
   padding: 0;
   outline: none;
@@ -46,7 +63,7 @@ a{
   z-index: 10;
 }
 
-.delete-board:hover {
+.delete-list:hover {
   font-size: 24px;
   transition: all 200ms ease-in-out;
   width: 25px;

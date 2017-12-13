@@ -1,4 +1,6 @@
 <div class="app">
-  <input type="image" class="toPrevPage" src="../assets/lampochka.jpg" (click)="toPrevPage()">
-  <app-boards></app-boards>
+  <div class="wrap">
+    <input type="image" class="toPrevPage" src="../assets/lampochka.jpg" (click)="toPrevPage()" routerLink="">
+  </div>
+  <router-outlet></router-outlet>
 </div>

@@ -1,4 +1,6 @@
+///<reference path="../../node_modules/@angular/router/src/router.d.ts"/>
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  public toPrevPage() {
+  constructor(private router: Router){}
 
+  public toPrevPage() {
+    this.router.navigate(['']);
   }
 }
