@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NameBoard } from "../../../../Services/data-for-open-board.service";
 import { AddList } from "../../../../Services/add-list.service";
 
 
@@ -8,23 +7,15 @@ import { AddList } from "../../../../Services/add-list.service";
   templateUrl: './lists-creation.component.html',
   styleUrls: ['./lists-creation.component.css']
 })
-export class ListsCreationComponent implements OnInit { //, OnDestroy
+export class ListsCreationComponent{
 
   private idList: number = 0;
   private addMode: boolean = false;
   private nameList: string = '';
-  private idItem: number = 0;
-  private nameItem: string = '';
 
-  constructor(private nameBoard: NameBoard, private dataForList: AddList) {
+  constructor(private dataForList: AddList) {
   }
 
-  ngOnInit() {
-    // this.nameBoard.currentName
-    //   .subscribe(boardName => {
-    //     this.name = 'Tom';
-    //   }).unsubscribe();
-  }
 
   public add() {
     this.addMode = true;

@@ -18,7 +18,6 @@ import { ListsCreationComponent } from './Boards/active-board/open-board/lists-c
 import { ListOfItemComponent } from './Boards/active-board/open-board/lists/list-of-item/list-of-item.component';
 import { DataForListOfItemService } from './Services/data-for-list-of-item.service';
 
-// определение машрутов -- нужно делать программн!
 const appRoutes: Routes =[
   {path: '', component: BoardsComponent},
   {path: '**', component: OpenBoardComponent}

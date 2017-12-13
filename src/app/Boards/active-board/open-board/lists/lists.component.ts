@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AddList } from '../../../../Services/add-list.service';
 import { DataForListOfItemService } from '../../../../Services/data-for-list-of-item.service';
 
@@ -16,7 +16,7 @@ export class List {
   id: number;
   name: string;
 
-  constructor(id: number, name: string) {   //, item: Items
+  constructor(id: number, name: string) {
     this.id = id;
     this.name = name;
   }
@@ -27,7 +27,7 @@ export class List {
   templateUrl: './lists.component.html',
   styleUrls: ['./lists.component.css']
 })
-export class ListsComponent implements OnInit {
+export class ListsComponent implements OnInit, OnDestroy{
   private lists: List[] = [];
   private idItem: number = 0;
   private nameItem: string = '';
@@ -42,6 +42,11 @@ export class ListsComponent implements OnInit {
           this.addItemList(id, listName);
         }
       });
+  }
+
+  ngOnDestroy() {
+    this.dataForList.currentList.subscribe(() => {
+    }).unsubscribe();
   }
 
   public press($event) {

@@ -22,18 +22,13 @@ export class BoardCreationComponent {
     });
   }
 
-  // submit($event), createNewBoard() -- пока одно и тоже
-  public submit($event) {
-  }
-
-  public enterPress($event) {   // изменение id !!!
+  public enterPress($event) {
     this.validName = this.nameBoard.trim() !== '' ? true : false;
     if ($event.keyCode == '13' && this.validName) {
       this.dataForBord.changeBoard(this.idBoard, this.nameBoard);
       this.invalidName = this.nameBoard == '';
       this.close();
     }
-
   }
 
   public createBoard() {
@@ -47,22 +42,13 @@ export class BoardCreationComponent {
     this.createMode = false;
   }
 
-  //  close(), cancelBoard() -- пока одно и тоже + по окончанию добавления должна срабатывать одна из этих функций
   public closeEvent() {
-    // this.formForBoard.controls['name'] = false;
     this.close();
     this.idBoard--;
   }
 
-  // public cancelBoard() {
-  //   this.name = '';
-  //   this.invalidName = false;
-  //   this.createMode = false;
-  //   this.id--;
-  // }
-
   public createNewBoard() {
-    this.validName = this.nameBoard.trim() !== '' ? true : false;
+    this.validName = this.nameBoard.trim() !== '';
     if (this.validName) {
       this.dataForBord.changeBoard(this.idBoard, this.nameBoard);
       this.invalidName = this.nameBoard == '';

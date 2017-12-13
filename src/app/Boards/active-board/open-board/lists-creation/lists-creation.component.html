@@ -1,14 +1,12 @@
-<div class="wrap"> <!-- *ngFor="let board of boards"-->
+<div class="wrap">
 
   <div class="wrap-body">
-            <!-- компонент-->
     <button *ngIf="!addMode" (click)="add()" class="btn-add-board">
       Add a list...
     </button>
     <div *ngIf="addMode" class="add-list">
       <input type="button" value="X" class="delete-list" (click)="closeCreationList()">
       <input type="text" class="name-list" (keyup)="enter($event)" [(ngModel)]="nameList" autofocus>
-      <!--<p *ngIf="invalidName" class="error">give ma a name!</p>-->
     </div>
   </div>
 </div>

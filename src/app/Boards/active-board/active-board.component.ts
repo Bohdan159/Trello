@@ -31,7 +31,6 @@ export class ActiveBoardComponent implements OnInit, OnDestroy {
           this.addBoard(id, boardName);
         }
       });
-    // .unsubscribe;
   }
 
   ngOnDestroy() {

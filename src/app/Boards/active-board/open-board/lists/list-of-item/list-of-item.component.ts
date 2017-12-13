@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataForListOfItemService } from '../../../../../Services/data-for-list-of-item.service';
-// import { AddList } from '../../../../Services/add-list';
 
 export class Item{
   id: number;

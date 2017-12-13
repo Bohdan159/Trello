@@ -3,7 +3,7 @@
     Create a new board...
   </button>
   <div *ngIf="createMode" class="create-board active-board">
-    <form [formGroup]="formForBoard" class="form-active-board" (ngSubmit)="submit($event)">
+    <form [formGroup]="formForBoard" class="form-active-board">
       <div class="header-of-board">
         <label>Creating a board</label>
         <input type="button" value="x" (click)="closeEvent()" class="close">
