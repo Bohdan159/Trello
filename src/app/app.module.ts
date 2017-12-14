@@ -17,9 +17,12 @@ import { AddList } from './Services/add-list.service';
 import { ListsCreationComponent } from './Boards/active-board/open-board/lists-creation/lists-creation.component';
 import { ListOfItemComponent } from './Boards/active-board/open-board/lists/list-of-item/list-of-item.component';
 import { DataForListOfItemService } from './Services/data-for-list-of-item.service';
+import { AddModeServer } from "./Services/add-mode.server";
+import { IdBoardService } from "./Services/id-board.service";
+import { StorageService } from "./Services/storage.service";
 
 const appRoutes: Routes =[
-  {path: '', component: BoardsComponent},
+  {path: '', component: OpenBoardComponent}, //BoardsComponent
   {path: '**', component: OpenBoardComponent}
 ];
 
@@ -40,7 +43,7 @@ const appRoutes: Routes =[
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [CreateNewBoard, NameBoard, AddList, DataForListOfItemService],
+  providers: [CreateNewBoard, NameBoard, AddList, DataForListOfItemService, AddModeServer, IdBoardService, StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

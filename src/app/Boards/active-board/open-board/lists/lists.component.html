@@ -4,7 +4,7 @@
     <h2>{{list.name}}</h2>
   </div>
   <div class="body-of-list">
-    <input type="text" class="name-item" (keyup)="press($event, i)" [(ngModel)]="nameItem">
+    <input type="text" class="name-item" (keyup)="press($event, i)" id="{{i}}"> <!--[ngModel]="nameItem"-->
     <app-list-of-item></app-list-of-item>
   </div>
 

@@ -1,26 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AddList } from '../../../../Services/add-list.service';
 import { DataForListOfItemService } from '../../../../Services/data-for-list-of-item.service';
-
-export class Item {
-  idItem: number;
-  nameItem: string;
-
-  constructor(id: number, name: string) {
-    this.idItem = id;
-    this.nameItem = name;
-  }
-}
-
-export class List {
-  id: number;
-  name: string;
-
-  constructor(id: number, name: string) {
-    this.id = id;
-    this.name = name;
-  }
-}
+import { List } from "../../../../Classes/list";
+import { StorageService } from '../../../../Services/storage.service';
 
 @Component({
   selector: 'app-lists',
@@ -32,14 +14,16 @@ export class ListsComponent implements OnInit, OnDestroy{
   private idItem: number = 0;
   private nameItem: string = '';
 
-  constructor(private dataForList: AddList, private dataForItem: DataForListOfItemService) {
+  constructor(private dataForList: AddList, private dataForItem: DataForListOfItemService, private storageOfList: StorageService) {
   }
 
   ngOnInit() {
+    this.lists = this.storageOfList.getLists();
     this.dataForList.currentList
       .subscribe(({id, listName}) => {
         if (listName != '') {
           this.addItemList(id, listName);
+          this.storageOfList.setLists(this.lists);
         }
       });
   }
@@ -49,13 +33,15 @@ export class ListsComponent implements OnInit, OnDestroy{
     }).unsubscribe();
   }
 
-  public press($event) {
-    const validName: boolean = this.nameItem.trim() !== '' ? true : false;
+  public press($event, id) {
+    // this.nameItem = $event.target.value;
+    const validName: boolean = $event.target.value.trim() !== ''; // this.nameItem.trim() !== '';
+
     if ($event.keyCode == '13' && validName) {
       this.idItem++;
 
-      this.dataForItem.addItem(this.idItem, this.nameItem);
-      this.nameItem = '';
+      this.dataForItem.addItem(this.idItem, $event.target.value);
+      $event.target.value = '';
     }
 
   }
@@ -65,8 +51,9 @@ export class ListsComponent implements OnInit, OnDestroy{
   }
 
   public deleteList(id) {
-    this.idItem--;
+    this.storageOfList.decreaseIdList();
     this.lists.splice(id, 1);
+    this.storageOfList.setLists(this.lists);
+    debugger;
   }
 }
-

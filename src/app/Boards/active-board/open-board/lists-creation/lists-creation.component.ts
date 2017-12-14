@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AddList } from "../../../../Services/add-list.service";
+import { StorageService } from "../../../../Services/storage.service";
 
 
 @Component({
@@ -9,17 +10,15 @@ import { AddList } from "../../../../Services/add-list.service";
 })
 export class ListsCreationComponent{
 
-  private idList: number = 0;
   private addMode: boolean = false;
   private nameList: string = '';
 
-  constructor(private dataForList: AddList) {
+  constructor(private dataForList: AddList, private storageOfList: StorageService) {
   }
-
 
   public add() {
     this.addMode = true;
-    this.idList++;
+    this.storageOfList.increaseIdList();
   }
 
   public close() {
@@ -29,13 +28,14 @@ export class ListsCreationComponent{
 
   public closeCreationList() {
     this.close();
-    this.idList--;
+    this.storageOfList.decreaseIdList();
   }
 
   public enter($event) {
     const validName: boolean = this.nameList.trim() !== '';
     if ($event.keyCode == '13' && validName) {
-      this.dataForList.addList(this.idList, this.nameList);
+      this.dataForList.addList(this.storageOfList.getIdList(), this.nameList);
+
       this.close();
     }
   }

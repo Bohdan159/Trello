@@ -5,4 +5,7 @@ import { Component} from '@angular/core';
   templateUrl: './boards.component.html',
   styleUrls: ['./boards.component.css']
 })
-export class BoardsComponent{}
+export class BoardsComponent{
+  constructor(){
+  }
+}
