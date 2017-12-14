@@ -22,7 +22,7 @@ import { IdBoardService } from "./Services/id-board.service";
 import { StorageService } from "./Services/storage.service";
 
 const appRoutes: Routes =[
-  {path: '', component: OpenBoardComponent}, //BoardsComponent
+  {path: '', component: BoardsComponent},
   {path: '**', component: OpenBoardComponent}
 ];
 
