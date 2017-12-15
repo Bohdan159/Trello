@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CreateNewBoard } from '../../Services/create-new-board.service';
+import { IdBoardService } from '../../Services/id-board.service';
 
 @Component({
   selector: 'app-board-creation',
@@ -8,24 +9,25 @@ import { CreateNewBoard } from '../../Services/create-new-board.service';
   styleUrls: ['./board-creation.component.css']
 })
 export class BoardCreationComponent {
+
   private nameBoard = '';
-  private idBoard = 0;
+  // private idBoard = -1;
   private createMode = false;
   private invalidName: boolean = false;
   private validName: boolean = false;
 
   formForBoard: FormGroup;
 
-  constructor(private dataForBord: CreateNewBoard) {
+  constructor(private dataForBord: CreateNewBoard, private idBoard: IdBoardService) {
     this.formForBoard = new FormGroup({
       'name': new FormControl('', Validators.required)
     });
   }
 
   public enterPress($event) {
-    this.validName = this.nameBoard.trim() !== '' ? true : false;
+    this.validName = this.nameBoard.trim() !== '';
     if ($event.keyCode == '13' && this.validName) {
-      this.dataForBord.changeBoard(this.idBoard, this.nameBoard);
+      this.dataForBord.changeBoard(this.idBoard.getID(), this.nameBoard);
       this.invalidName = this.nameBoard == '';
       this.close();
     }
@@ -33,7 +35,8 @@ export class BoardCreationComponent {
 
   public createBoard() {
     this.createMode = true;
-    this.idBoard++;
+    this.validName = true;
+    this.idBoard.increaseID();
   }
 
   public close(){
@@ -44,13 +47,13 @@ export class BoardCreationComponent {
 
   public closeEvent() {
     this.close();
-    this.idBoard--;
+    this.idBoard.decreaseID();
   }
 
   public createNewBoard() {
     this.validName = this.nameBoard.trim() !== '';
     if (this.validName) {
-      this.dataForBord.changeBoard(this.idBoard, this.nameBoard);
+      this.dataForBord.changeBoard(this.idBoard.getID(), this.nameBoard);
       this.invalidName = this.nameBoard == '';
       this.close();
     }

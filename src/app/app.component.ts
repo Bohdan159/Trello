@@ -7,9 +7,15 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
 export class AppComponent {
 
-  constructor(private router: Router){}
+  constructor(private router: Router){
+    localStorage.clear();
+    localStorage.setItem('boards', JSON.stringify([]));
+    localStorage.setItem('boardOfLists', JSON.stringify([]));
+  }
 
   public toPrevPage() {
     this.router.navigate(['']);
