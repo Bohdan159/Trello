@@ -1,25 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
-import { BoardsComponent } from './Boards/boards.component';
-import { ActiveBoardComponent } from './Boards/active-board/active-board.component';
+import { BoardsComponent } from './boards/boards.component';
+import { ActiveBoardComponent } from './boards/active-board/active-board.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BoardCreationComponent } from './Boards/board-creation/board-creation.component';
-import { CreateNewBoard } from './Services/create-new-board.service';
-import { OpenBoardComponent } from './Boards/active-board/open-board/open-board.component';
-import { ListsComponent } from './Boards/active-board/open-board/lists/lists.component';
-import { NameBoard } from './Services/data-for-open-board.service';
-import { AddList } from './Services/add-list.service';
-import { ListsCreationComponent } from './Boards/active-board/open-board/lists-creation/lists-creation.component';
-import { ListOfItemComponent } from './Boards/active-board/open-board/lists/list-of-item/list-of-item.component';
-import { DataForListOfItemService } from './Services/data-for-list-of-item.service';
+import { BoardCreationComponent } from './boards/board-creation/board-creation.component';
+import { CreateNewBoard } from './services/create-new-board.service';
+import { OpenBoardComponent } from './boards/active-board/open-board/open-board.component';
+import { ListsComponent } from './boards/active-board/open-board/lists/lists.component';
+import { AddList } from './services/add-list.service';
+import { ListsCreationComponent } from './boards/active-board/open-board/lists-creation/lists-creation.component';
+import { ListOfItemComponent } from './boards/active-board/open-board/lists/list-of-item/list-of-item.component';
+import { DataForListOfItemService } from './services/data-for-list-of-item.service';
+import { AddModeServer } from './services/add-mode.server';
+import { StorageBoardsService } from './services/storage-boards.service';
+import { StorageListsService } from './services/storage-lists.service';
+import { StorageItemsService } from './services/storage-items.service';
+import { BoardService } from './services/board.service';
 
-const appRoutes: Routes =[
-  {path: '', component: BoardsComponent},
+const appRoutes: Routes = [
+  {path: '', component: BoardsComponent}, /*BoardsComponent*/
   {path: '**', component: OpenBoardComponent}
 ];
 
@@ -40,7 +44,17 @@ const appRoutes: Routes =[
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [CreateNewBoard, NameBoard, AddList, DataForListOfItemService],
+  providers: [
+    CreateNewBoard,
+    BoardService,
+    AddList,
+    DataForListOfItemService,
+    AddModeServer,
+    StorageBoardsService,
+    StorageListsService,
+    StorageItemsService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
