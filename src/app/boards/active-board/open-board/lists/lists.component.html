@@ -1,0 +1,17 @@
+<div class="wrap" *ngFor="let list of lists; let i=index" (click)="clkList(i)"> <!-- (click)="clkList(i)" -->
+  <div>
+    <img class="edit" src="../../../../../assets/icons8-карандаш-50.png" (click)="checkToEditMode(i)">
+  </div>
+  <div class="head-of-list">
+    <input type="button" value="X" class="delete-list" (click)="deleteList(i)">
+    <h2 *ngIf="!list.editMode">{{list.name}}</h2>
+    <input *ngIf="list.editMode" type="text" (blur)="defMode($event, i)" (keyup)="defMode($event, i)"
+           value="{{list.name}}" class="edit-input">
+  </div>
+  <div class="body-of-list" > <!-- dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="list.items"-->
+    <input type="text" class="name-item" (keyup)="press($event, i)" id="{{i}}"> <!--[ngModel]="nameItem"//-->
+    <div class="wrap-for-items" >
+      <app-list-of-item [dragula]='"nested-bag"'></app-list-of-item>
+    </div>
+  </div>
+</div>

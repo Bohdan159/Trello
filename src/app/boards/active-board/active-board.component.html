@@ -1,0 +1,13 @@
+<div class="wrap" *ngFor="let board of boards; let i=index">
+  <div>
+    <img class="edit" src="../assets/icons8-карандаш-50.png" (click)="checkToEditMode(i)">
+  </div>
+  <input type="button" value="X" class="delete-board" (click)="deleteBoard(i)">
+  <a (click)="goTo(i)">
+    <div class="wrap-new-board">
+      <h2 *ngIf="!board.editMode">{{board.name}}</h2>
+    </div>
+  </a>
+  <input *ngIf="board.editMode" type="text" (blur)="defMode($event, i)" (keyup)="defMode($event, i)"
+         value="{{board.name}}" class="edit-input">
+</div>

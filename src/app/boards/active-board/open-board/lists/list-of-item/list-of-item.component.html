@@ -1,0 +1,14 @@
+<div class="wrap new_wrap" *ngFor="let item of items; let i=index">
+  <!-- dnd-sortable [sortableIndex]="i" -->
+  <div class="item">
+    <div>
+      <img class="edit" src="../assets/icons8-карандаш-50.png" (click)="checkToEditMode(i)">
+    </div>
+    <input type="button" value="X" class="delete-list" (click)="deleteItem(i)">
+    <div>
+      <h2 *ngIf="!item.editMode">{{item.nameItem}}</h2>
+      <input *ngIf="item.editMode" type="text" (blur)="defMode($event, i)" (keyup)="defMode($event, i)"
+             value="{{item.nameItem}}" class="edit-input">
+    </div>
+  </div>
+</div>
