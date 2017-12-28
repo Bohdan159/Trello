@@ -13,8 +13,6 @@ import { BoardService } from '../../services/board.service';
 })
 export class ActiveBoardComponent implements OnInit, OnDestroy {
   private boards: Board[] = [];
-  private idBoard = -1;
-  private board: any;
 
   constructor(private dataForBord: CreateNewBoard,
               private boardService: BoardService,
@@ -22,7 +20,7 @@ export class ActiveBoardComponent implements OnInit, OnDestroy {
               private storageBoards: StorageBoardsService) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.boards = this.storageBoards.getBoards();
     this.dataForBord.currentBoard
       .subscribe(({id, boardName}) => {
@@ -44,7 +42,7 @@ export class ActiveBoardComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.dataForBord.resetBoard();
     this.dataForBord.currentBoard.subscribe(() => {
     }).unsubscribe();
@@ -60,7 +58,6 @@ export class ActiveBoardComponent implements OnInit, OnDestroy {
       board.id = index;
     });
     this.storageBoards.decreaseID();
-    console.log(this.storageBoards.getID());
     this.storageBoards.setBoards(this.boards);
 
   }

@@ -1,16 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from "rxjs/Subject";
-import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class DataForListOfItemService {
   private resetMode = false;
   private idList = 0;
-
-  // private itemSourceTest = new Subject<any>();
-  // Observable.create(observer => {
-  // });
 
   private itemSource = new BehaviorSubject<any>({idItem: 0, nameItem: ''});
   currentItem = this.itemSource.asObservable();

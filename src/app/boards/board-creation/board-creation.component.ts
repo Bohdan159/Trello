@@ -14,7 +14,7 @@ export class BoardCreationComponent {
   private invalidName = false;
   private validName = false;
 
-  formForBoard: FormGroup;
+  private formForBoard: FormGroup;
 
   constructor(private dataForBord: CreateNewBoard, private storageBoards: StorageBoardsService) {
     this.formForBoard = new FormGroup({

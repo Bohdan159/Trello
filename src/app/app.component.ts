@@ -1,4 +1,3 @@
-///<reference path="../../node_modules/@angular/router/src/router.d.ts"/>
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 

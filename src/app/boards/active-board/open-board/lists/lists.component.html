@@ -8,8 +8,8 @@
     <input *ngIf="list.editMode" type="text" (blur)="defMode($event, i)" (keyup)="defMode($event, i)"
            value="{{list.name}}" class="edit-input">
   </div>
-  <div class="body-of-list" > <!-- dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="list.items"-->
-    <input type="text" class="name-item" (keyup)="press($event, i)" id="{{i}}"> <!--[ngModel]="nameItem"//-->
+  <div class="body-of-list" >
+    <input type="text" class="name-item" (keyup)="press($event, i)" id="{{i}}">
     <div class="wrap-for-items" >
       <app-list-of-item [dragula]='"nested-bag"'></app-list-of-item>
     </div>
