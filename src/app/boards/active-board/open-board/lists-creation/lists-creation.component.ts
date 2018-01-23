@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AddList } from '../../../../services/add-list.service';
 import { StorageBoardsService } from '../../../../services/storage-boards.service';
 import { BoardService } from '../../../../services/board.service';
-import { DataForListOfItemService } from "../../../../services/data-for-list-of-item.service";
+import { DataForListOfItemService } from '../../../../services/data-for-list-of-item.service';
 
 @Component({
   selector: 'app-lists-creation',
@@ -20,20 +20,16 @@ export class ListsCreationComponent implements OnInit {
   constructor(private dataForList: AddList,
               private boardService: BoardService,
               private storageBoard: StorageBoardsService,
-              private dataForItem: DataForListOfItemService)
-  {
+              private dataForItem: DataForListOfItemService) {
     localStorage.setItem('listOfItems', JSON.stringify([]));
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.boardService.currentValueBoard
       .subscribe(board => {
         this.idBoard = board.id;
-        // debugger
-      });
+      }).unsubscribe();
   }
-
-  // this.storageBoards.getBoard(id)
 
   public add() {
     this.addMode = true;
@@ -57,24 +53,9 @@ export class ListsCreationComponent implements OnInit {
         this.idList = 0;
       }
       this.dataForList.addList(this.idList, this.nameList);
-      console.log('after add list');
-      console.log(this.storageBoard.getBoard(this.idBoard));
-
-      debugger
       this.dataForItem.setIdList(this.idList);
-
       this.resetMode = true;
-      // this.resetMode = idList != this.idList;
       this.dataForItem.setResetMode(this.resetMode);
-      // this.dataForItem.setIdList(idList);
-
-      // this.dataForItem.currentItem.subscribe(({}) => {
-      // }).unsubscribe();
-      // debugger
-      // this.listService.getListInfo(this.)
-      // this.resetMode = true;
-      // this.dataForItem.setIdList(this.idList);
-      // debugger
       this.close();
     }
   }
