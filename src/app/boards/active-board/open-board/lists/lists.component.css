@@ -1,0 +1,96 @@
+.wrap{
+  width: 15%;
+  margin: 30px;
+  display: inline-block;
+  vertical-align: top;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  position: relative;
+}
+
+@media screen and (max-width: 1540px){
+  .wrap{
+    width: 20%;
+  }
+}
+
+.edit{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  margin-left: 90%;
+  z-index: 5;
+}
+
+.edit:hover{
+  width: 35px;
+  height: 35px;
+  margin-left: 88%;
+  transition: all 200ms ease-in-out;
+}
+
+.edit-input{
+  outline: none;
+  font-family: inherit;
+  width: 90%;
+  height: auto;
+  margin: 12% 5%;
+  text-align: center;
+  border: 1px solid green;
+  font-weight: bold;
+  font-size: 1.5em;
+  border-radius: 20px;
+}
+
+.head-of-list {
+  border-bottom: 1px solid grey;
+  font-size: 20px;
+
+}
+
+.delete-list{
+  position: absolute;
+  padding: 0;
+  outline: none;
+  border: none;
+  background: rgba(255, 255, 255, 1);
+  color: rgba(159, 231, 164, 1);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  z-index: 10;
+}
+
+.delete-list:hover{
+  font-size: 24px;
+  transition: all 200ms ease-in-out;
+  width: 25px;
+  height: 25px;
+  cursor: inherit;
+  line-height: 0.5em;
+  align-items: center;
+}
+
+h2{
+  box-sizing: border-box;
+  margin: 0 30px;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.body-of-list{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.name-item{
+  padding: 11px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 2.5px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 3px 3px rgba(0,0,0,0.16), 0 3px 3px rgba(0,0,0,0.23);
+  outline: none;
+  margin: 10px;
+}
